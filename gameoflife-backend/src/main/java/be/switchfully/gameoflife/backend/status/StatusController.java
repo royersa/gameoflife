@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = StatusController.STATUS_BASE_URL)
 public class StatusController {
 
-    static final String STATUS_BASE_URL = "/status";
+    static final String STATUS_BASE_URL = "/api/status";
 
     private final StatusService statusService;
 

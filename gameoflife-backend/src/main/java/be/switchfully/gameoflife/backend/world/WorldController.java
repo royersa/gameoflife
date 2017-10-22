@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/gameoflife")
+@RequestMapping(value = WorldController.WORLD_BASE_URL)
 public class WorldController {
 
+    static final String WORLD_BASE_URL = "/api/world";
     private static Logger logger = Logger.getLogger(WorldController.class);
 
-    @PostMapping(value = "/world")
+    @PostMapping(value = "/phase")
     public List<List<Boolean>> getWorld(@RequestBody List<List<Boolean>> currentWorld){
         logger.info(currentWorld);
         return currentWorld;

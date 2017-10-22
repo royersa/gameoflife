@@ -1,0 +1,43 @@
+body {
+  background-color: black;
+}
+
+h1 {
+  color: white;
+  font-family: Menlo, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding-bottom: 25px;
+}
+
+.cell-container {
+  display: inline-block;
+}
+
+.board {
+  padding-top: 25px;
+}
+
+.cell {
+  height: 25px;
+  width: 25px;
+  border: 2px solid black;
+}
+
+.row-in-world{
+  margin: -10px;
+}
+
+.true {
+  background-color: white;
+}
+
+.false {
+  background-color: grey;
+}
+
+.btn-group {
+  padding-right: 15px;
+}
+
+.dimension-input {
+  width: 1.3cm;
+}
