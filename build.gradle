@@ -1,0 +1,38 @@
+apply plugin: "java"
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE"
+    }
+}
+
+subprojects {
+    apply plugin: "java"
+    apply plugin: "io.spring.dependency-management"
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencyManagement {
+        dependencies {
+            // SPRING
+            dependency "org.springframework.boot:spring-boot-starter:1.5.8.RELEASE"
+            dependency "org.springframework.boot:spring-boot-starter-web-services:1.5.8.RELEASE"
+            dependency "org.springframework.boot:spring-boot-starter-test:1.5.8.RELEASE"
+
+            // TEST
+            dependency "org.assertj:assertj-core:3.8.0"
+
+            // TEST RESTASSURED
+            dependency "com.jayway.restassured:rest-assured:2.9.0"
+            dependency "org.codehaus.groovy:groovy-all:2.4.10"
+        }
+    }
+}

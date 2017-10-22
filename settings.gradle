@@ -1,0 +1,5 @@
+rootProject.name = 'gameoflife'
+
+include 'gameoflife-backend'
+include 'gameoflife-ui'
+
