@@ -1,39 +1,59 @@
-<div class="row">
-  <div class="col-md-offset-2 btn-group col-md-3">
-    <button type="button" class="btn btn-primary" (click)="startEvolution()">Start
-      <span class="glyphicon glyphicon-play"></span>
-    </button>
+<div class="container">
+  <div class="row">
+    <div class="btn-group col-md-2">
+      <button type="button" class="btn btn-success" (click)="startEvolution()">Start
+        <span class="glyphicon glyphicon-play"></span>
+      </button>
 
-    <button type="button" class="btn btn-danger" (click)="stopEvolution()">Stop
-      <span class="glyphicon glyphicon-stop"></span>
-    </button>
+      <button type="button" class="btn btn-danger" (click)="stopEvolution()">Stop
+        <span class="glyphicon glyphicon-stop"></span>
+      </button>
 
-    <button type="button" class="btn btn-default" (click)="getNextStatusOfWorld()">Step
-      <span class="glyphicon glyphicon-step-forward"></span>
-    </button>
+      <button type="button" class="btn btn-info" (click)="getNextStatusOfWorld()">Step
+        <span class="glyphicon glyphicon-step-forward"></span>
+      </button>
+    </div>
+
+    <div class="btn-group col-md-3">
+      <span class="input-group-addon" id="pattern">Pattern</span>
+      <button type="button" class="btn btn-warning" (click)="initializeWorld(blinker())">Blinker</button>
+      <button type="button" class="btn btn-warning" (click)="initializeWorld(pulsar())">Pulsar</button>
+    </div>
+
+    <div class="btn-group col-md-3">
+      <span class="input-group-addon" id="basic-addon1">Dimension</span>
+      <button type="button" class="btn btn-warning" (click)="addDimension(1)">+1</button>
+      <button type="button" class="btn btn-warning" (click)="addDimension(10)">+10</button>
+      <button type="button" class="btn btn-warning" (click)="removeDimension(1)">-1</button>
+      <button type="button" class="btn btn-warning" (click)="removeDimension(10)">-10</button>
+    </div>
+
   </div>
-
-  <div class="btn-group col-md-2">
-    <span class="input-group-addon" id="pattern">Pattern</span>
-    <button type="button" class="btn btn-warning" (click)="initializeWorld(blinker())">Blinker</button>
-    <button type="button" class="btn btn-warning" (click)="initializeWorld(pulsar())">Pulsar</button>
-  </div>
-
-  <div class="col-md-2 input-group">
-    <span class="input-group-addon" id="basic-addon1">Dimension</span>
-    <button type="button" class="btn btn-warning" (click)="addDimension(1)">+1</button>
-    <button type="button" class="btn btn-warning" (click)="addDimension(10)">+10</button>
-    <button type="button" class="btn btn-warning" (click)="removeDimension(1)">-1</button>
-    <button type="button" class="btn btn-warning" (click)="removeDimension(10)">-10</button>
-  </div>
-
 </div>
 
-<div class="row">
-  <div class="board">
-    <div class="row-in-world" *ngFor="let cellRow of world; let indexRow = index">
-      <div class="cell-container" *ngFor="let cell of cellRow; let indexColumn = index">
-        <div class="cell" [ngClass]="{'true': cell, 'false': !cell}" (click)="toggleCell(indexColumn,indexRow)"></div>
+<div class="container">
+  <div class="row custom-margin justify-content-md-center">
+    <div class="col-md-12">
+      <div *ngIf="isEvolutionEnabled" class="alert alert-success" role="alert">
+        A new generation is created every second: current generation #{{numberOfCalls}}
+      </div>
+      <div *ngIf="!isEvolutionEnabled" class="alert alert-warning" role="alert">
+        Automatically creating new generations is paused! current generation #{{numberOfCalls}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-md-auto">
+      <div class="board">
+        <div class="row-in-world" *ngFor="let cellRow of world; let indexRow = index">
+          <div class="cell-container" *ngFor="let cell of cellRow; let indexColumn = index">
+            <div class="cell" [ngClass]="{'true': cell, 'false': !cell}"
+                 (click)="toggleCell(indexColumn,indexRow)"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

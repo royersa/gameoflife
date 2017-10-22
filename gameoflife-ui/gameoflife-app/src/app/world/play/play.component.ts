@@ -13,22 +13,31 @@ export class PlayComponent implements OnInit {
   private worldService: WorldService;
   private world: number[];
   private worldDimension: number;
+  private numberOfCalls: number;
 
   constructor(worldService: WorldService) {
     this.worldService = worldService;
   }
 
   ngOnInit() {
-    this.initializeWorld(this.emptyWorld(10));
+    this.initializeWorld(PlayComponent.emptyWorld(10));
     this.isEvolutionEnabled = false;
+    this.numberOfCalls = 0;
   }
 
+  private initializeWorld(arr): void {
+    this.world = arr;
+    this.worldDimension = arr.length;
+  };
+
   startEvolution(): void {
+    this.isEvolutionEnabled = true;
     IntervalObservable.create(1000)
       .takeWhile(() => this.isEvolutionEnabled) // only fires when component is alive
       .subscribe(() => {
         this.worldService.evolveWorld(this.world)
           .subscribe(evolvedWorld => {
+            this.numberOfCalls++;
             this.world = evolvedWorld.json();
           });
       });
@@ -41,6 +50,7 @@ export class PlayComponent implements OnInit {
   getNextStatusOfWorld(): void {
     this.worldService.evolveWorld(this.world)
       .subscribe(evolvedWorld => {
+        this.numberOfCalls++;
         this.world = evolvedWorld.json();
       });
   };
@@ -49,7 +59,17 @@ export class PlayComponent implements OnInit {
     this.world[row][column] = !this.world[row][column];
   };
 
-  private emptyWorld(dimension): number[] {
+  addDimension(amount: number): void {
+    const newDimension = this.worldDimension + amount;
+    this.initializeWorld(PlayComponent.emptyWorld(newDimension <= 40 ? newDimension : 40));
+  };
+
+  removeDimension(amount: number): void {
+    const newDimension = this.worldDimension - amount;
+    this.initializeWorld(PlayComponent.emptyWorld(newDimension >= 3 ? newDimension : 3));
+  };
+
+  private static emptyWorld(dimension): number[] {
     let arr = [];
     for (let i = 0; i < dimension; i++) {
       arr[i] = [];
@@ -91,21 +111,6 @@ export class PlayComponent implements OnInit {
       [D, D, D, D, D, D, D, D, D, D, D, D, D, D, D, D, D],
       [D, D, D, D, D, D, D, D, D, D, D, D, D, D, D, D, D]
     ];
-  };
-
-  addDimension(amount: number): void {
-    const newDimension = this.worldDimension + amount;
-    this.initializeWorld(this.emptyWorld(newDimension <= 40 ? newDimension : 40));
-  };
-
-  removeDimension(amount: number): void {
-    const newDimension = this.worldDimension - amount;
-    this.initializeWorld(this.emptyWorld(newDimension >= 3 ? newDimension : 3));
-  };
-
-  private initializeWorld(arr): void {
-    this.world = arr;
-    this.worldDimension = arr.length;
   };
 
 }
