@@ -22,4 +22,4 @@ Using Gradle, Angular (4+) and Spring Boot (1.5.8)
 
 ## Original state?
 
-YES, you are in the original state of the project
+NO, you are not in the original state of the project
