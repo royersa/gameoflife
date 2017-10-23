@@ -19,7 +19,8 @@ Using Gradle, Angular (4+) and Spring Boot (1.5.8)
 - Tip 2: the UI won't work properly without a running backend.
 - Tip 3: You don't have to make any changes to the UI
 - Tip 4: The original state of the project is tagged as `originalstate`
+- Tip 5: Hello
 
 ## Original state?
 
-YES
+Maybe
