@@ -1,5 +1,7 @@
 # Game of Life
 
+Game of Life Code Kata!
+
 Using Gradle, Angular (4+) and Spring Boot (1.5.8)
 
 ## Usage
