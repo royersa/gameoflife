@@ -1,21 +1,21 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {WorldRoutingModule} from "./world.routing.module";
+import {GolRoutingModule} from "./gol.routing.module";
 import {PlayComponent} from "./play/play.component";
 import {RulesComponent} from "./rules/rules.component";
-import {WorldService} from "./service/world.service";
+import {GolService} from "./service/gol.service";
 
 @NgModule({
   imports: [
     CommonModule,
-    WorldRoutingModule
+    GolRoutingModule
   ],
   providers: [
-    WorldService,
+    GolService,
   ],
   declarations: [
     RulesComponent,
     PlayComponent
   ],
 })
-export class WorldModule { }
+export class GolModule { }

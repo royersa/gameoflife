@@ -3,17 +3,17 @@ import {NgModule} from "@angular/core";
 import {RulesComponent} from "./rules/rules.component";
 import {PlayComponent} from "./play/play.component";
 
-const WorldRoutes: Routes = [
-  { path: "world/rules", component: RulesComponent },
-  { path: "world/play", component: PlayComponent }
+const GolRoutes: Routes = [
+  { path: "gol/rules", component: RulesComponent },
+  { path: "gol/play", component: PlayComponent }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forChild(WorldRoutes)
+    RouterModule.forChild(GolRoutes)
   ],
   exports: [
     RouterModule
   ]
 })
-export class WorldRoutingModule {}
+export class GolRoutingModule {}

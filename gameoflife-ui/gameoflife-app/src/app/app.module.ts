@@ -4,14 +4,14 @@ import {AppComponent} from "./app.component";
 import {RouterModule} from "@angular/router";
 import {HttpModule} from "@angular/http";
 import {AppRoutes} from "./app.routes";
-import {WorldModule} from "./world/world.module";
+import {GolModule} from "./gol/gol.module";
 
 @NgModule({
   imports: [
     RouterModule.forRoot(AppRoutes),
     BrowserModule,
     HttpModule,
-    WorldModule
+    GolModule
   ],
   declarations: [
     AppComponent

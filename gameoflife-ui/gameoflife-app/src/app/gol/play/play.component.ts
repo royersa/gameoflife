@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {IntervalObservable} from "rxjs/observable/IntervalObservable";
 import "rxjs/add/operator/takeWhile";
-import {WorldService} from "../service/world.service";
+import {GolService} from "../service/gol.service";
 
 @Component({
   selector: 'app-play',
@@ -10,12 +10,12 @@ import {WorldService} from "../service/world.service";
 export class PlayComponent implements OnInit {
 
   private isEvolutionEnabled: boolean;
-  private worldService: WorldService;
+  private worldService: GolService;
   private world: number[];
   private worldDimension: number;
   private numberOfCalls: number;
 
-  constructor(worldService: WorldService) {
+  constructor(worldService: GolService) {
     this.worldService = worldService;
   }
 
@@ -35,7 +35,7 @@ export class PlayComponent implements OnInit {
     IntervalObservable.create(1000)
       .takeWhile(() => this.isEvolutionEnabled) // only fires when component is alive
       .subscribe(() => {
-        this.worldService.evolveWorld(this.world)
+        this.worldService.nextGeneration(this.world)
           .subscribe(evolvedWorld => {
             this.numberOfCalls++;
             this.world = evolvedWorld.json();
@@ -48,7 +48,7 @@ export class PlayComponent implements OnInit {
   };
 
   getNextStatusOfWorld(): void {
-    this.worldService.evolveWorld(this.world)
+    this.worldService.nextGeneration(this.world)
       .subscribe(evolvedWorld => {
         this.numberOfCalls++;
         this.world = evolvedWorld.json();
