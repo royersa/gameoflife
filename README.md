@@ -20,6 +20,3 @@ Using Gradle, Angular (4+) and Spring Boot (1.5.8)
 - Tip 3: You don't have to make any changes to the UI
 - Tip 4: The original state of the project is tagged as `start-state`
 
-## Original state?
-
-NO, you are not in the original state of the project
